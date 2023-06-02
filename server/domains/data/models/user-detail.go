@@ -26,6 +26,7 @@ type UserDetail struct {
 	City                 City `gorm:"foreignKey:CityId"`
 	ProvinceId           int16
 	Province             Province `gorm:"foreignKey:ProvinceId"`
+	Verified             *int8    `gorm:"size:1"`
 	Created
 	Updated
 }
@@ -51,6 +52,7 @@ type UserDetailBuilder struct {
 	city                 City
 	provinceId           int16
 	province             Province
+	verified             *int8
 	CreatedBuilder
 	UpdatedBuilder
 }
@@ -83,6 +85,7 @@ func (b *UserDetailBuilder) Build() *UserDetail {
 	o.CityId = b.cityId
 	o.Province = b.province
 	o.ProvinceId = b.provinceId
+	o.Verified = b.verified
 	o.Created = *b.CreatedBuilder.Build()
 	o.Updated = *b.UpdatedBuilder.Build()
 	return o
@@ -161,4 +164,9 @@ func (u *UserDetailBuilder) SetCity(city City) {
 func (u *UserDetailBuilder) SetProvince(province Province) {
 	u.province = province
 	u.provinceId = province.Id
+}
+
+// Setter method for the field verified of type *int8 in the object UserDetailBuilder
+func (u *UserDetailBuilder) SetVerified(verified *int8) {
+	u.verified = verified
 }
