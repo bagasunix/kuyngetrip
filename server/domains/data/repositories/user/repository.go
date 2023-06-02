@@ -12,7 +12,8 @@ import (
 type Command interface {
 	Create(ctx context.Context, user *models.User) error
 	Delete(ctx context.Context, id uuid.UUID) error
-	UpdateStatus(ctx context.Context, model *models.User) error
+	Update(ctx context.Context, m *models.User) error
+	UpdateStatus(ctx context.Context, m *models.User) error
 }
 
 type Query interface {
