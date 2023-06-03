@@ -13,6 +13,7 @@ type Tour struct {
 	TourPrice       float64
 	Reviews         []TourReview   `gorm:"foreignKey:TourID"`
 	TourSchedule    []TourSchedule `gorm:"foreignKey:TourScheduleID"`
+	Deleted
 }
 
 // Builder Object for Tour
@@ -25,6 +26,7 @@ type TourBuilder struct {
 	tourPrice       float64
 	review          []TourReview
 	tourschedule    []TourSchedule
+	DeletedBuilder
 }
 
 // Constructor for TourBuilder
@@ -44,6 +46,7 @@ func (b *TourBuilder) Build() *Tour {
 	o.TourPrice = b.tourPrice
 	o.Reviews = b.review
 	o.TourSchedule = b.tourschedule
+	o.Deleted = *b.DeletedBuilder.Build()
 	return o
 }
 
