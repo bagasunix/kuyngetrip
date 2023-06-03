@@ -10,6 +10,7 @@ type TourReview struct {
 	Participant    Participant  `gorm:"foreignKey:ParticipantID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	Rating         float32      `gorm:"type:decimal(2,1)"`
 	ReviewText     string
+	Deleted
 }
 
 // Builder Object for TourReview
@@ -21,6 +22,7 @@ type TourReviewBuilder struct {
 	participant    Participant
 	rating         float32
 	reviewText     string
+	DeletedBuilder
 }
 
 // Constructor for TourReviewBuilder
@@ -39,6 +41,7 @@ func (b *TourReviewBuilder) Build() *TourReview {
 	o.Participant = b.participant
 	o.Rating = b.rating
 	o.ReviewText = b.reviewText
+	o.Deleted = *b.DeletedBuilder.Build()
 	return o
 }
 
