@@ -13,6 +13,7 @@ type TourSchedule struct {
 	Capacity    int
 	Tour        Tour          `gorm:"foreignKey:TourID"`
 	Participant []Participant `gorm:"foreignKey:ParticipantID"`
+	Deleted
 }
 
 // Builder Object for TourSchedule
@@ -22,6 +23,7 @@ type TourScheduleBuilder struct {
 	tour        Tour
 	capacity    int
 	participant []Participant
+	DeletedBuilder
 }
 
 // Constructor for TourScheduleBuilder
@@ -38,6 +40,7 @@ func (b *TourScheduleBuilder) Build() *TourSchedule {
 	o.Tour = b.tour
 	o.Capacity = b.capacity
 	o.Participant = b.participant
+	o.Deleted = *b.DeletedBuilder.Build()
 	return o
 }
 
