@@ -15,6 +15,7 @@ type Destination struct {
 	Village
 	Coordinate
 	ImageDestination []TourImage
+	Deleted
 }
 
 // Builder Object for Destination
@@ -31,6 +32,7 @@ type DestinationBuilder struct {
 	destinationName        string
 	destinationDescription string
 	imageDestination       []TourImage
+	DeletedBuilder
 }
 
 // Constructor for DestinationBuilder
@@ -53,6 +55,7 @@ func (b *DestinationBuilder) Build() *Destination {
 	o.DestinationName = b.destinationName
 	o.DestinationDescription = b.destinationDescription
 	o.ImageDestination = b.imageDestination
+	o.Deleted = *b.DeletedBuilder.Build()
 	return o
 }
 
