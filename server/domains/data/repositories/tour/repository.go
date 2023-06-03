@@ -10,8 +10,8 @@ import (
 )
 
 type Commond interface {
-	Create(ctx context.Context, tour *models.Tour) error
-	Update(ctx context.Context, tour *models.Tour) error
+	Create(ctx context.Context, m *models.Tour) error
+	Update(ctx context.Context, m *models.Tour) error
 	Delete(ctx context.Context, id uuid.UUID) error
 }
 

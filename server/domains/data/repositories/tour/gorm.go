@@ -18,8 +18,8 @@ type gormProvicer struct {
 }
 
 // Create implements Repository.
-func (g *gormProvicer) Create(ctx context.Context, tour *models.Tour) error {
-	return err.ErrDuplicateValue(g.logs, g.GetModelName(), g.db.WithContext(ctx).Create(&tour).Error)
+func (g *gormProvicer) Create(ctx context.Context, m *models.Tour) error {
+	return err.ErrDuplicateValue(g.logs, g.GetModelName(), g.db.WithContext(ctx).Create(&m).Error)
 }
 
 // Delete implements Repository.
@@ -57,8 +57,8 @@ func (g *gormProvicer) GetModelName() string {
 }
 
 // Update implements Repository.
-func (g *gormProvicer) Update(ctx context.Context, tour *models.Tour) error {
-	return err.ErrSomethingWrong(g.logs, g.db.WithContext(ctx).Updates(&tour).Error)
+func (g *gormProvicer) Update(ctx context.Context, m *models.Tour) error {
+	return err.ErrSomethingWrong(g.logs, g.db.WithContext(ctx).Updates(&m).Error)
 }
 
 func NewGorm(logs *zap.Logger, db *gorm.DB) Repository {
