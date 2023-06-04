@@ -23,7 +23,7 @@ func (g *gormProvider) Create(ctx context.Context, m models.TourImage) error {
 
 // Delete implements Repository.
 func (g *gormProvider) Delete(ctx context.Context, id uuid.UUID) error {
-	return err.ErrSomethingWrong(g.logs, g.db.WithContext(ctx).Delete(models.NewBaseModelBuilder().Build(), "id = ?", id).Error)
+	return err.ErrSomethingWrong(g.logs, g.db.WithContext(ctx).Delete(models.NewTourImageBuilder().Build(), "id = ?", id).Error)
 }
 
 // GetAll implements Repository.
