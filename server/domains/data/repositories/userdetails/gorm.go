@@ -24,7 +24,7 @@ func (g *gormProvider) Create(ctx context.Context, user *models.UserDetail) erro
 
 // Delete implements Repository.
 func (g *gormProvider) Delete(ctx context.Context, id uuid.UUID) error {
-	return err.ErrSomethingWrong(g.logs, g.db.WithContext(ctx).Delete(models.NewUserBuilder().Build(), "id = ?", id.String()).Error)
+	return err.ErrSomethingWrong(g.logs, g.db.WithContext(ctx).Delete(models.NewUserDetailBuilder().Build(), "id = ?", id.String()).Error)
 }
 
 // GetAll implements Repository.
