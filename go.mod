@@ -19,4 +19,5 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
+	gorm.io/plugin/dbresolver v1.4.1 // indirect
 )
