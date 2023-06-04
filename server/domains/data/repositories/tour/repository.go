@@ -17,7 +17,7 @@ type Commond interface {
 
 type Query interface {
 	GetAll(ctx context.Context, limit int64) (result models.SliceResult[models.Tour])
-	GetById(ctx context.Context, id uuid.UUID) (result models.SingleResult[models.Tour])
+	GetById(ctx context.Context, id uuid.UUID) (result models.SingleResult[*models.Tour])
 	GetByTour(ctx context.Context, tour string, limit int64) (result models.SliceResult[models.Tour])
 }
 
