@@ -1,15 +1,6 @@
 version: '3.8'
 services:
-  golang:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 8080:8080
-    volumes:
-      - ./app:/app
-
-  postgres:
+  db_postgres:
     image: postgres:latest
     restart: always
     ports:
@@ -17,9 +8,9 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=Kambing04
+      - POSTGRES_USER=bagasunix
+      - POSTGRES_DB=kuyngetrip
     env_file:
       - .env
     healthcheck:
@@ -29,31 +20,25 @@ services:
       retries: 5
       start_period: 30s
 
-  adminer:
-    image: adminer:latest
-    restart: always
-    ports:
-      - 8081:8080
-
   redis:
     image: redis:latest
     restart: always
     ports:
       - 6379:6379
 
-  vault:
-    image: vault:latest
-    restart: always
-    environment:
-      VAULT_DEV_ROOT_TOKEN_ID: myroot
-    ports:
-      - 8200:8200
-    cap_add:
-      - IPC_LOCK
-    volumes:
-      - ./vault/config:/vault/config
-      - ./vault/data:/vault/data
-      - ./vault/policies:/vault/policies
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #     db_postgres:
+  #       condition: service_healthy
+  #   links:
+  #     - db_postgres
+  #   environment:
+  #     - DB_HOST=db_postgres
 
 volumes:
   postgres-data:
