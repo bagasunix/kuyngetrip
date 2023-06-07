@@ -1,10 +1,11 @@
 # Stage 1: Build Golang Application
 FROM golang:alpine
-RUN apk update && apk add --no-cache git
 # Timezone
 ENV TZ Asia/Jakarta
 # Set the working directory inside the container
 WORKDIR /app
+# Install git
+RUN apk update && apk add --no-cache git
 # Copy the source code to the container
 COPY . .
 # Copy go.mod and go.sum files

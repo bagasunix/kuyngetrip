@@ -26,19 +26,19 @@ services:
     ports:
       - 6379:6379
 
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 8080:8080
-  #   depends_on:
-  #     db_postgres:
-  #       condition: service_healthy
-  #   links:
-  #     - db_postgres
-  #   environment:
-  #     - DB_HOST=db_postgres
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      db_postgres:
+        condition: service_healthy
+    links:
+      - db_postgres
+    environment:
+      - DB_HOST=db_postgres
 
 volumes:
   postgres-data:
