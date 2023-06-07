@@ -74,7 +74,7 @@ func connect() (*gorm.DB, error) {
 	port := 5432
 	user := "bagasunix"
 	password := "Kambing04"
-	dbname := "nesttravel"
+	dbname := "kuyngetrip"
 
 	// membuat string koneksi (DSN)
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
