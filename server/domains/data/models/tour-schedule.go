@@ -8,21 +8,21 @@ import (
 
 type TourSchedule struct {
 	BaseModel
-	TourID      uuid.UUID
-	TourDate    time.Time
-	Capacity    int
-	Tour        Tour          `gorm:"foreignKey:TourID"`
-	Participant []Participant `gorm:"foreignKey:ParticipantID"`
+	TourID       uuid.UUID `gorm:"not null;"`
+	Tour         Tour      `gorm:"foreignKey:TourID"`
+	TourDate     time.Time
+	Capacity     int           `gorm:"not null;"`
+	Participants []Participant `gorm:"foreignKey:id"`
 	Deleted
 }
 
 // Builder Object for TourSchedule
 type TourScheduleBuilder struct {
 	BaseModelBuilder
-	tourID      uuid.UUID
-	tour        Tour
-	capacity    int
-	participant []Participant
+	tourID       uuid.UUID
+	tour         Tour
+	capacity     int
+	participants []Participant
 	DeletedBuilder
 }
 
@@ -39,7 +39,7 @@ func (b *TourScheduleBuilder) Build() *TourSchedule {
 	o.TourID = b.tourID
 	o.Tour = b.tour
 	o.Capacity = b.capacity
-	o.Participant = b.participant
+	o.Participants = b.participants
 	o.Deleted = *b.DeletedBuilder.Build()
 	return o
 }
@@ -56,6 +56,6 @@ func (t *TourScheduleBuilder) SetCapacity(capacity int) {
 }
 
 // Setter method for the field participant of type []Participant in the object TourScheduleBuilder
-func (t *TourScheduleBuilder) SetParticipant(participant []Participant) {
-	t.participant = participant
+func (t *TourScheduleBuilder) SetParticipant(participants []Participant) {
+	t.participants = participants
 }

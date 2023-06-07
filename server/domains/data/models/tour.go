@@ -6,13 +6,13 @@ import (
 
 type Tour struct {
 	BaseModel
-	TourGuideID     uuid.UUID `gorm:"not null;type:uuid"`
+	TourGuideID     uuid.UUID `gorm:"not null;"`
 	User            User      `gorm:"foreignKey:TourGuideID;constraint:OnUpdate:CASCADE,OnDelete:Restrict"`
-	TourName        string
+	TourName        string    `gorm:"not null;"`
 	TourDescription string
-	TourPrice       float64
-	Reviews         []TourReview   `gorm:"foreignKey:TourID"`
-	TourSchedule    []TourSchedule `gorm:"foreignKey:TourScheduleID"`
+	TourPrice       float64        `gorm:"not null;"`
+	Reviews         *[]TourReview  `gorm:"foreignKey:id"`
+	TourSchedule    []TourSchedule `gorm:"foreignKey:id"`
 	Deleted
 }
 
@@ -24,7 +24,7 @@ type TourBuilder struct {
 	tourName        string
 	tourDescription string
 	tourPrice       float64
-	review          []TourReview
+	review          *[]TourReview
 	tourschedule    []TourSchedule
 	DeletedBuilder
 }
@@ -72,7 +72,7 @@ func (t *TourBuilder) SetTourPrice(tourPrice float64) {
 }
 
 // Setter method for the field review of type []TourReview in the object TourBuilder
-func (t *TourBuilder) SetReview(review []TourReview) {
+func (t *TourBuilder) SetReview(review *[]TourReview) {
 	t.review = review
 }
 

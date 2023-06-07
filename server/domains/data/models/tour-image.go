@@ -4,7 +4,7 @@ import "github.com/gofrs/uuid"
 
 type TourImage struct {
 	BaseModel
-	DestinationID    uuid.UUID    `gorm:"not null;type:uuid;"`
+	DestinationID    uuid.UUID    `gorm:"not null;"`
 	Destination      *Destination `gorm:"foreignKey:DestinationID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	ImageName        string
 	ImagePath        string

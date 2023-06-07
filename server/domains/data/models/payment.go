@@ -8,9 +8,9 @@ import (
 
 type Payment struct {
 	BaseModel
-	TourScheduleID uuid.UUID     `gorm:"not null;type:uuid;"`
+	TourScheduleID uuid.UUID     `gorm:"not null;"`
 	TourSchedule   *TourSchedule `gorm:"foreignKey:TourScheduleID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
-	ParticipantID  uuid.UUID     `gorm:"not null;type:uuid;"`
+	ParticipantID  uuid.UUID     `gorm:"not null;"`
 	Participant    *Participant  `gorm:"foreignKey:ParticipantID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	PaymentDate    time.Time
 	PaymentStatus  string  `gorm:"size:10"`

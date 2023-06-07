@@ -4,9 +4,9 @@ import "github.com/gofrs/uuid"
 
 type TourReview struct {
 	BaseModel
-	TourScheduleID uuid.UUID    `gorm:"not null;type:uuid;"`
+	TourScheduleID uuid.UUID    `gorm:"not null;"`
 	TourSchedule   TourSchedule `gorm:"foreignKey:TourID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
-	ParticipantID  uuid.UUID    `gorm:"not null;type:uuid;"`
+	ParticipantID  uuid.UUID    `gorm:"not null;"`
 	Participant    Participant  `gorm:"foreignKey:ParticipantID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	Rating         float32      `gorm:"type:decimal(2,1)"`
 	ReviewText     string

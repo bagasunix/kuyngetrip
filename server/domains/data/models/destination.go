@@ -6,7 +6,7 @@ type Destination struct {
 	BaseModel
 	TourID                 uuid.UUID `gorm:"not null;type:uuid;"`
 	Tour                   *Tour     `gorm:"foreignKey:TourID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
-	DestinationName        string
+	DestinationName        string    `gorm:"not null;"`
 	DestinationDescription string
 	Country
 	Province
@@ -14,7 +14,7 @@ type Destination struct {
 	SubDistrict
 	Village
 	Coordinate
-	ImageDestination []TourImage
+	ImageDestination []TourImage `gorm:"foreignKey:id"`
 	Deleted
 }
 
