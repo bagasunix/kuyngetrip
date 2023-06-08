@@ -4,7 +4,7 @@ import "github.com/gofrs/uuid"
 
 type Destination struct {
 	BaseModel
-	TourID                 uuid.UUID `gorm:"not null;type:uuid;"`
+	TourID                 uuid.UUID `gorm:"not null;"`
 	Tour                   *Tour     `gorm:"foreignKey:TourID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	DestinationName        string    `gorm:"not null;"`
 	DestinationDescription string
@@ -14,7 +14,7 @@ type Destination struct {
 	SubDistrict
 	Village
 	Coordinate
-	ImageDestination []TourImage `gorm:"foreignKey:id"`
+	ImageDestination []TourImage `gorm:"foreignKey:DestinationID"`
 	Deleted
 }
 
