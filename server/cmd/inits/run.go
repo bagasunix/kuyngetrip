@@ -5,6 +5,7 @@ import (
 	"flag"
 
 	"github.com/bagasunix/kuyngetrip/pkg/env"
+	"github.com/bagasunix/kuyngetrip/server/domains/data/repositories"
 )
 
 func Run() {
@@ -15,7 +16,10 @@ func Run() {
 	if err != nil {
 		logger.Fatal(err.Error())
 	}
+	redis := InitRedis(ctx, configs)
 	// ************ Database ************
 	db := InitDb(ctx, logger, configs)
 	Migrate(logger, db)
+	// ************ Service ************
+	repo := repositories.New(logger, db)
 }
