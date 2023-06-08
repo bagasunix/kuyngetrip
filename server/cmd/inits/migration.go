@@ -9,6 +9,7 @@ import (
 )
 
 func GetTables() (tables []interface{}) {
+
 	tables = append(tables, models.NewCountryBuilder().Build())
 	tables = append(tables, models.NewProvinceBuilder().Build())
 	tables = append(tables, models.NewCityBuilder().Build())
@@ -20,9 +21,10 @@ func GetTables() (tables []interface{}) {
 	tables = append(tables, models.NewUserDetailBuilder().Build())
 
 	tables = append(tables, models.NewTourBuilder().Build())
+	tables = append(tables, models.NewTourScheduleBuilder().Build())
 	tables = append(tables, models.NewDestinationBuilder().Build())
 	tables = append(tables, models.NewTourImageBuilder().Build())
-	tables = append(tables, models.NewTourScheduleBuilder().Build())
+
 	tables = append(tables, models.NewParticipantBuilder().Build())
 	tables = append(tables, models.NewTourReviewBuilder().Build())
 	tables = append(tables, models.NewPaymentBuilder().Build())
