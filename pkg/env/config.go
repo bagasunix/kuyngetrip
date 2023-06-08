@@ -28,6 +28,9 @@ type Configs struct {
 	LogMaxSize       string
 	LogMaxBackup     string
 	LogMaxAge        string
+	RedisHost        string
+	RedisPort        string
+	RedisPassword    string
 }
 
 var env = map[string]map[string]string{
@@ -106,6 +109,18 @@ var env = map[string]map[string]string{
 	"LOG_MAXAGE": {
 		"Key":          "LogMaxAge",
 		"DefaultValue": "30",
+	},
+	"REDIS_HOST": {
+		"Key":          "RedisHost",
+		"DefaultValue": "127.0.0.1",
+	},
+	"REDIS_PORT": {
+		"Key":          "RedisPort",
+		"DefaultValue": "6379",
+	},
+	"REDIS_PASSWORD": {
+		"Key":          "RedisPassword",
+		"DefaultValue": "",
 	},
 }
 
