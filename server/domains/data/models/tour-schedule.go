@@ -12,7 +12,7 @@ type TourSchedule struct {
 	Tour         Tour      `gorm:"foreignKey:TourID"`
 	TourDate     time.Time
 	Capacity     int           `gorm:"not null;"`
-	Participants []Participant `gorm:"foreignKey:id"`
+	Participants []Participant `gorm:"foreignKey:TourScheduleID"`
 	Deleted
 }
 
