@@ -13,8 +13,8 @@ type Participant struct {
 	UserID           uuid.UUID     `gorm:"not null;"`
 	User             *User         `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:Restrict"`
 	RegistrationDate time.Time
-	Payment          []Payment    `gorm:"foreignKey:id"`
-	TourReview       []TourReview `gorm:"foreignKey:id"`
+	Payment          []Payment    `gorm:"foreignKey:ParticipantID"`
+	TourReview       []TourReview `gorm:"foreignKey:ParticipantID"`
 }
 
 // Builder Object for Participant
@@ -39,20 +39,15 @@ func NewParticipantBuilder() *ParticipantBuilder {
 func (b *ParticipantBuilder) Build() *Participant {
 	o := new(Participant)
 	o.BaseModel = *b.BaseModelBuilder.Build()
-	// o.TourScheduleID = b.tourScheduleID
-	// o.TourSchedule = b.tourSchedule
+	o.TourScheduleID = b.tourScheduleID
+	o.TourSchedule = b.tourSchedule
 	o.UserID = b.userID
 	o.User = b.user
 	o.RegistrationDate = b.registrationDate
 	o.Payment = b.payment
 	o.TourReview = b.tourReview
-	return o
-}
 
-// Setter method for the field tour of type *Tour in the object ParticipantBuilder
-func (p *ParticipantBuilder) SetTourSchedule(tourSchedule *TourSchedule) {
-	p.tourSchedule = tourSchedule
-	p.tourScheduleID = tourSchedule.ID
+	return o
 }
 
 // Setter method for the field user of type *User in the object ParticipantBuilder
@@ -74,4 +69,10 @@ func (p *ParticipantBuilder) SetPayment(payment []Payment) {
 // Setter method for the field tourReview of type []TourReview in the object ParticipantBuilder
 func (p *ParticipantBuilder) SetTourReview(tourReview []TourReview) {
 	p.tourReview = tourReview
+}
+
+// Setter method for the field tourSchedule of type *TourSchedule in the object ParticipantBuilder
+func (p *ParticipantBuilder) SetTourSchedule(tourSchedule *TourSchedule) {
+	p.tourSchedule = tourSchedule
+	p.tourScheduleID = tourSchedule.ID
 }
