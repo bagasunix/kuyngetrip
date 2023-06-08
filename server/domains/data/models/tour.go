@@ -11,8 +11,9 @@ type Tour struct {
 	TourName        string    `gorm:"not null;"`
 	TourDescription string
 	TourPrice       float64        `gorm:"not null;"`
-	Reviews         *[]TourReview  `gorm:"foreignKey:id"`
+	Reviews         []TourReview   `gorm:"foreignKey:id"`
 	TourSchedule    []TourSchedule `gorm:"foreignKey:id"`
+	Destinations    []Destination  `gorm:"foreignKey:id"`
 	Deleted
 }
 
@@ -24,9 +25,10 @@ type TourBuilder struct {
 	tourName        string
 	tourDescription string
 	tourPrice       float64
-	review          *[]TourReview
+	review          []TourReview
 	tourschedule    []TourSchedule
 	DeletedBuilder
+	destinations []Destination
 }
 
 // Constructor for TourBuilder
@@ -47,6 +49,7 @@ func (b *TourBuilder) Build() *Tour {
 	o.Reviews = b.review
 	o.TourSchedule = b.tourschedule
 	o.Deleted = *b.DeletedBuilder.Build()
+	o.Destinations = b.destinations
 	return o
 }
 
@@ -72,11 +75,16 @@ func (t *TourBuilder) SetTourPrice(tourPrice float64) {
 }
 
 // Setter method for the field review of type []TourReview in the object TourBuilder
-func (t *TourBuilder) SetReview(review *[]TourReview) {
+func (t *TourBuilder) SetReview(review []TourReview) {
 	t.review = review
 }
 
 // Setter method for the field tourschedule of type []TourSchedule in the object TourBuilder
 func (t *TourBuilder) SetTourschedule(tourschedule []TourSchedule) {
 	t.tourschedule = tourschedule
+}
+
+// Setter method for the field destinations of type []Destination in the object TourBuilder
+func (t *TourBuilder) SetDestinations(destinations []Destination) {
+	t.destinations = destinations
 }
