@@ -13,6 +13,7 @@ import (
 	"github.com/bagasunix/kuyngetrip/server/domains/data/repositories/tourschedule"
 	"github.com/bagasunix/kuyngetrip/server/domains/data/repositories/user"
 	"github.com/bagasunix/kuyngetrip/server/domains/data/repositories/userdetails"
+	"github.com/bagasunix/kuyngetrip/server/domains/data/repositories/village"
 )
 
 type Repositories interface {
@@ -25,6 +26,7 @@ type Repositories interface {
 	GetTourImage() tourimage.Repository
 	GetTourParticipation() participant.Repository
 	GetTourPayment() payment.Repository
+	GetVillage() village.Repository
 }
 
 type repo struct {
@@ -37,6 +39,12 @@ type repo struct {
 	tourImage         tourimage.Repository
 	tourParticipation participant.Repository
 	tourPayment       payment.Repository
+	village           village.Repository
+}
+
+// GetVillage implements Repositories.
+func (*repo) GetVillage() village.Repository {
+	panic("unimplemented")
 }
 
 // GetTour implements Repositories.
