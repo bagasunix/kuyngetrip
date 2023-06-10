@@ -5,12 +5,15 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/bagasunix/kuyngetrip/server/domains/data/repositories"
+	"github.com/bagasunix/kuyngetrip/server/domains/usecases"
 )
 
 type Service interface {
+	usecases.Authentication
 }
 
 type service struct {
+	usecases.Authentication
 }
 
 // Builder Object for service
@@ -32,8 +35,9 @@ func NewserviceBuilder(logs *zap.Logger, jwtKey string, repositories repositorie
 	return o
 }
 
-func buildService(logs *zap.Logger, jwtKey string, repositories repositories.Repositories, redis *redis.Client) Service {
+func buildService(logs *zap.Logger, jwtKey string, repo repositories.Repositories, redis *redis.Client) Service {
 	svc := new(service)
+	svc.Authentication = usecases.NewUser(logs, jwtKey, repo, redis)
 	return svc
 }
 
