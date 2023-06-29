@@ -1,17 +1,8 @@
 package endpoints
 
 import (
-	"context"
-
 	"github.com/bagasunix/kuyngetrip/server/domains"
 )
-
-// Endpoint is the fundamental building block of servers and clients.
-// It represents a single RPC method.
-type Endpoint func(ctx context.Context, request interface{}) (response interface{}, err error)
-
-// Middleware is a chainable behavior modifier for endpoints.
-type Middleware func(Endpoint) Endpoint
 
 type Endpoints struct {
 	UserEndpoint UserEndpoint
