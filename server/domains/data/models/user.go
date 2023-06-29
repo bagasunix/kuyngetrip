@@ -5,7 +5,7 @@ type User struct {
 	UserName   string
 	Email      string `gorm:"size:100;uniqueIndex:idx_user_email_unique"`
 	Password   string
-	UserType   string
+	UserType   string `gorm:"size:1;comment:0 - Owner, 1 - Admin, 2 - Guide, 3 - Participant"`
 	Picture    string
 	Active     string     `gorm:"size:1;comment:0 - NonActive, 1 - Active, 2 - Pending, 3 - Suspended"`
 	UserDetail UserDetail `gorm:"foreignKey:UserID"`
@@ -57,22 +57,22 @@ func (u *UserBuilder) SetPassword(password string) {
 	u.password = password
 }
 
-// Setter method for the field userType of type string in the object UserBuilder
-func (u *UserBuilder) SetUserType(userType string) {
-	u.userType = userType
-}
-
 // Setter method for the field picture of type string in the object UserBuilder
 func (u *UserBuilder) SetPicture(picture string) {
 	u.picture = picture
 }
 
-// Setter method for the field activity of type string in the object UserBuilder
-func (u *UserBuilder) SetActivite(activite string) {
-	u.activite = activite
-}
-
 // Setter method for the field userDetail of type userDetail in the object UserBuilder
 func (u *UserBuilder) SetUserDetail(userDetail UserDetail) {
 	u.userDetail = userDetail
+}
+
+// Setter method for the field userType of type string in the object UserBuilder
+func (u *UserBuilder) SetUserType(userType string) {
+	u.userType = userType
+}
+
+// Setter method for the field activite of type string in the object UserBuilder
+func (u *UserBuilder) SetActivite(activite string) {
+	u.activite = activite
 }
