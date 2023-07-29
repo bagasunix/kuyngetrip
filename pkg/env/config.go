@@ -10,6 +10,7 @@ import (
 
 type Configs struct {
 	Env             string
+	DbDriver        string
 	DbHost          string
 	DbPort          string
 	DbName          string
@@ -30,6 +31,10 @@ type Configs struct {
 }
 
 var env = map[string]map[string]string{
+	"DB_DRIVER": {
+		"Key":          "DbDriver",
+		"DefaultValue": "postgres",
+	},
 	"DB_HOST": {
 		"Key":          "DbHost",
 		"DefaultValue": "localhost",
