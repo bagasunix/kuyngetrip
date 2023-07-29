@@ -7,7 +7,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func HandlerWithOSExit(logger *zap.Logger, err error, args ...interface{}) {
+func HandlerWithOSExit(logger zap.Logger, err error, args ...interface{}) {
 	if err == nil {
 		return
 	}
@@ -15,7 +15,7 @@ func HandlerWithOSExit(logger *zap.Logger, err error, args ...interface{}) {
 	os.Exit(1)
 }
 
-func HandlerWithLoggerReturnedError(logger *zap.Logger, err error, args ...interface{}) error {
+func HandlerWithLoggerReturnedError(logger zap.Logger, err error, args ...interface{}) error {
 	if err == nil {
 		return err
 	}
@@ -23,7 +23,7 @@ func HandlerWithLoggerReturnedError(logger *zap.Logger, err error, args ...inter
 	return err
 }
 
-func HandlerWithLoggerReturnedVoid(logger *zap.Logger, err error, args ...interface{}) {
+func HandlerWithLoggerReturnedVoid(logger zap.Logger, err error, args ...interface{}) {
 	if err == nil {
 		return
 	}

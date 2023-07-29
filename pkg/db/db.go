@@ -12,7 +12,7 @@ import (
 	"bagasunix/kuyngetrip/pkg/errors"
 )
 
-func NewDB(ctx context.Context, logger *zap.Logger, dbConfig *DbConfig) *gorm.DB {
+func NewDB(ctx context.Context, logger zap.Logger, dbConfig *DbConfig) *gorm.DB {
 	db, err := gorm.Open(postgres.Open(dbConfig.GetDSN()), &gorm.Config{SkipDefaultTransaction: true, PrepareStmt: true})
 	errors.HandlerWithOSExit(logger, err, "init", "database", "config", dbConfig.GetDSN())
 	errors.HandlerWithOSExit(logger, db.WithContext(ctx).Use(dbresolver.Register(dbresolver.Config{}).SetMaxIdleConns(dbConfig.MaxIdleConns).SetMaxOpenConns(dbConfig.MaxOpenConns).SetConnMaxLifetime(time.Hour)), "db_resolver")
