@@ -16,7 +16,7 @@ type User struct {
 	IpChangePassword      *string
 	BrowserChangePassword *string
 	LastChangePassword    *time.Time
-	UserDetail            UserDetail `gorm:"foreignKey:UserID"`
+	UserDetail            UserDetail
 }
 
 // Builder Object for User
