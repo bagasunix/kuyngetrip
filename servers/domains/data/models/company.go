@@ -11,8 +11,8 @@ type Company struct {
 	CompanyName            string `gorm:"column:company_name"`
 	CompanyPhone           string `gorm:"column:company_phone;size:13"`
 	CompanyEmail           string `gorm:"column:company_email"`
-	CompanyUserPICId       *uuid.UUID
-	CompanyUserPIC         *User  `gorm:"column:company_pic_user_id;foreignKey:CompanyUserPICId"`
+	CompanyUserPICId       uuid.UUID
+	CompanyUserPIC         User   `gorm:"column:company_pic_user_id;foreignKey:CompanyUserPICId"`
 	CompanyAddress         string `gorm:"column:company_address"`
 	CompanyVillageId       int64
 	CompanyVillage         Village `gorm:"column:company_village;foreignKey:CompanyVillageId"`
@@ -37,8 +37,8 @@ type CompanyBuilder struct {
 	companyName            string
 	companyPhone           string
 	companyEmail           string
-	companyUserPICId       *uuid.UUID
-	companyUserPIC         *User
+	companyUserPICId       uuid.UUID
+	companyUserPIC         User
 	companyAddress         string
 	companyVillageId       int64
 	companyVillage         Village
@@ -107,9 +107,9 @@ func (c *CompanyBuilder) SetCompanyEmail(companyEmail string) {
 }
 
 // Setter method for the field companyUserPIC of type User in the object CompanyBuilder
-func (c *CompanyBuilder) SetCompanyUserPIC(companyUserPIC *User) {
+func (c *CompanyBuilder) SetCompanyUserPIC(companyUserPIC User) {
 	c.companyUserPIC = companyUserPIC
-	c.companyUserPICId = &companyUserPIC.ID
+	c.companyUserPICId = companyUserPIC.ID
 }
 
 // Setter method for the field companyAddress of type string in the object CompanyBuilder
